@@ -1,0 +1,367 @@
+\chapter{Zahteve} \label{Zahteve}
+
+Pred začetnom snovanja simulatorja elektrostatične razelektritve so bila podane sledeče zahteve:
+\begin{itemize}
+\item Maksimalna napeost vsaj \SI{15}{\kilo\volt}.
+\item Nastavljanje napetosti od \SI{250}{\volt} do \SI{15}{\kilo\volt}.
+\item Natačnost izhodne napetosti vsaj 3\%.
+\item Avtomatsko preklaplanje med pozitivno in negativno izhodno napetostjo.
+\item Možnost spremembe modela razelektritve.
+\item Modularna zasnova.
+\item Možnost nadgradnje na avtomatični tester.
+\item Možnost povezave na LAN.
+\item Ustrezanje CE zakonodaji.
+\item Ustrezanje standardoma MIL-STD-883K in ESDA JS-001-2017.
+\end{itemize}
+
+Tekom projekta so se spremenile sledeče zahteve:
+\begin{itemize}
+\item Maksimalna napetost vsaj \SI{4}{\kilo\volt}.
+\end{itemize}
+Ter ni več potrebe po avtomatskem preklapljanju polaritete izhodne napetosti.
+
+\chapter{Blok shema projekta} \label{blokshemaprojekta}
+
+Glavni bloki, kateri sestavljajo simulator elektrostatične razelektritve so:
+\begin{itemize}
+\item Glavni kontrolni blok,
+\item Visokonapetostni kontrolni blok,
+\item Nastavljivi visokonapetostni napajalnik ter
+\item Visokonapetostno stikalo.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\columnwidth]{Sheme/Osnovna blok shema poenostavljena.pdf}
+    \caption{\label{BlokDiagramShema} Shema blok diagrama.}
+\end{figure}
+
+
+
+\section{Nastavljivi visokonapetostni napajalnik}
+
+ Nastavljivi visokonapetostni napajalnik, je modul, kateri je verjetno povrožal največ komplikacij. Prvotno je bil plan uporabiti že narjeni modul HP015Z proizvajalca Applied Kilovolts. Omenjeni modul ima maksimalno izhodno napetost \SI{15}{\kilo\volt} in maksimalni tok \SI{400}{\micro\ampere}. Ima možnost nastavitve napetosti glede na napetost na kontrolnem vhodu in možnost izbire pozitivne ali negativne izhodne napetosti. Z uporabo 10 bitnega digitalno-analognega pretvornika (ADC) bi lahko dosegli napetostno resolucijo približno \SI{14,65}{\volt}.
+Vendar zaradi takratne situacije je bil zmanjšan proračun za projekt, posledično smo se odločili sami izdelati modul. Specifikacije so ostale enake pri načrtovanju smo se poskušali držati načela, da uporabljamo komponente katere se dobijo pri več različnih virih. Najpomembnejša komponenta je bila transformator. Glede na specfikacij napajalnika je bil najbolj primeren t.i. "flyback" transformator. Želeli smo uporabiti že naviti transformator vendar se je to izkazalo kot nemogoče, saj praktično ne obstajajo takšni, ki imajo nazivno izolacijsko trdnost večjo kot pa \SI{4}{\kilo\volt}. 
+Edina možnost katera nam je še ostala je bila lastno navijanje transformatorja. Za prve poizkuse sem uporabil RM10 jedro iz materiala N87, pri prvem primeru sem na primar navil 2 ovoja in na sekundar 20, pri drugem pa na sekundar ovil 40 ovojev. %meritve za narediti bla bla bla
+%neki neki neki trafoti
+Za krmiljenje MOSFETa sem prvotno uporabljal vezje sestavljeno iz menjalnika nivoja ter "push-pull" komplementarnega para tranzistorjev, katera sta krmilila vrata MOSFETa.
+
+\begin{figure}[h]
+    \begin{circuitikz}
+        \draw (2,0)
+        to[V, v=$Sig$] (2,2)
+        to[R=$R_1$] (4,2)
+        to[short] (4.5,2);
+     
+        \draw (5,2) node[npn](npn1){}
+        (npn1.base) node[anchor=east, yshift=0.25cm, xshift=0.25cm] {}
+        (npn1.collector) node[anchor=south, xshift=0.5cm, yshift=-0.35cm] {}
+        (npn1.emitter) node[anchor=north, xshift=0.5cm] {};
+     
+        \draw (npn1.collector) 
+        to[R=$R_2$] (5,5);
+        
+        \draw (2,0)
+        to[short] (5,0)
+        to[short] (5,1.5);
+     
+        \draw (0,0)
+        to[V, v=$Vcc$] (0,2)
+        to[short] (0,5)
+        to[short] (12,5);
+     
+        \draw (0,0)
+        to[short] (12,0)
+        to[short] (12,2);
+     
+        \draw (8,1.5) node[pnp](pnp1){}
+        (pnp1.base) node[anchor=east] {}
+        (pnp1.collector) node[anchor=north] {}
+        (pnp1.emitter) node[anchor=south] {};
+     
+        \draw (8,3.5) node[npn](npn2){}
+        (npn2.base) node[anchor=east] {}
+        (npn2.collector) node[anchor=south] {}
+        (npn2.emitter) node[anchor=north] {};
+     
+        \draw (npn2.base)  ++(0,-0.5) node[circ]{};
+        
+        \draw (pnp1.emitter)   ++(0,-0.275) node[circ]{};
+        \draw (pnp1.emitter)   ++(2,-0.275) node[circ]{};
+
+        \draw (5,3) node[circ]{};
+        
+        \draw (5,5) node[circ]{}; %pike na vcc
+        \draw (8,5) node[circ]{};
+        
+        \draw (5,0) node[circ]{}; %pike na gnd
+        \draw (8,0) node[circ]{};
+        \draw (10,0) node[circ]{};
+     
+        \draw (npn2.collector)
+        to[short] (8,5);
+     
+        \draw (pnp1.collector)
+        to[short] (8,0);
+     
+        \draw (5,3)
+        to[short] (7.15,3)
+        to[short] (7.15,3.5)
+        to[short] (7.15,1.5);
+     
+        \draw (8,3)
+        to[short] (8,2)
+        to[short] (8,2)
+        to[R=$R_3$] (10,2)
+        to[R=$R_4$] (10,0);
+     
+        \draw (12,2.259) node[nigfete](NFET1){};
+      
+        \draw (10,2)
+        to[short] (11.25,2);
+     
+        \draw (12,3)
+        to[L=$L1$] (12,5);  
+    \end{circuitikz}
+                \caption{\label{BJTFETDriver} Shema MOSFET krmilnika narejena z bipolarnimi tranzistorji.}
+    \end{figure}
+
+
+    Pri meritvah se je pokazalo, da vezje prepočasi odpira MOSFET. Rešitev je bila krmilnik vrat z namenskim čipom UCC27517 proizvajalca Texas Instruments. Zaradi izredno majhnega časa vzpona in padca nam omogoča opravljanje meritev tudi pri višjih frekvencah. Maksimalni izhodni tok \SI{4}{\ampere} nam omgoča hitro odpiranje/zapiranje MOSFETov, kateri so namenjeni za višje moči in napetosti.
+ \begin{figure}[h]
+        \begin{circuitikz}
+            \draw (0,0)
+		to[V=Vcc] (0,5.05);
+		
+		\draw (4,2)
+		node[twoportshape] (Q) {}
+		(Q.w) node[left] {}
+		(Q.e) node[right] {}
+		(Q.n) node [above] {UCC37517};
+		
+		\draw (2,0)
+		to[V=Sig] (2,2)
+		to[short] (Q.w);
+		
+		\draw (6,2.28)
+		node[nigfete] (fet) {}
+		(fet.G) node[anchor=east] {}
+		(fet.D) node[anchor=north] {}
+		(fet.S) node[anchor=south] {};
+		
+		\draw (Q.e)
+		to[short] (fet.G);
+		
+		\draw (fet.S)
+		to[short] (6,0)
+		to[short] (0,0);
+		
+		\draw (fet.D)
+		to[L] ++(0,2)
+		to[short] ++(-6,0);
+		
+		\draw (2,0) node[circ] {};
+        \end{circuitikz}
+                \caption{\label{KrmilnikUCC27517} Shema krmilnika z UCC27517.}
+    \end{figure}
+    
+~\\Testi so bili narejeni na sledečih transformatorjih:
+    \begin{itemize}
+    	\item GA3459 proizvajalca CoilCraft
+    	
+    	\item GA3460 proizvajalca CoilCraft
+    	
+    	\item Z jedrom RM10 in prestavnim razmerjem 1:10
+    	
+    	\item Z jedrom RM10 in prestavnim razmerjem 1:20
+    	
+    	\item Z jedrom EFD 30/15/9 in prestavnim razmerjem 1:13
+    	
+    	\item in še kr neki drugih trafotov bla bla bla bla
+    
+    \end{itemize}
+
+GA3459 in GA3460
+Transformatorja sta namenjena za uporabo z krmilnikom za polnenje kondenzatorjev LT3751 proizvajalca Linear Technology. Nazivno napetostno območje je \SI{5}{\volt} - \SI{24}{\volt} in nazivna izhodna napetost je \SI{500}{\volt}. Prvotni načrt je bil regulacija izhodne napetosti v območju od \SI{10}{\volt} do \SI{500}{\volt} ter 30 stopenjski paralelni množilnik ~\cite{Using Parallel High Voltage Multipliers for 100kV Downhole Neutron Generator Power Supplies}. Kasneje sem spremenil mnenje in se odločil uporabiti samo transformator za doseganje končne izhodne napetosti. Glede na relativno visoko izhodno moč transformatorja sem se odločil opraviti meritve maksimalne izhodne napetosti, čeprav je nazivna izolacija samo eno minuto pri \SI{1500}{\volt_{rms}}. Čeprav so specificirane maksimalne tokovne špice \SI{20}{\ampere}, sem se pri meritvah omejil na \SI{3,2}{\ampere}. Pri vhodni napetosti \SI{10}{\volt} ter duty cycle 6\% sem dosegel \SI{13.8}{\kilo\volt_{max}} in \SI{9920}{\volt_{pp}}. Vendar se je pri tej napetosti že slišalo šumenje in vohalo po ozonu. Z seciranjem enega transformatorja sem prišel do uporabnih podatkov. Po meritvah jedro ustreza EFD 25/13/9 proizvajalca TDK in je iz materiala N87 z 0,55mm zračne reže ali N97 z \SI{0,5}{\milli\meter} zračne reže. V obeh primerih to pomeni vrednost \(A_{L}=\SI{160}{\nano\henry}\).  Z GA3460 pa rezultati niso spodbujojoči, saj ima induktivnost primarnega navitja za pol manjšo in sicer 2,5uH. Zaradi tega tudi magnetilni tok hitreje naraste do omejitve in posledično je bila najvišja izmerjena napetost \SI{4800}{\volt_{max}} in \SI{3120}{\volt_{pp}}.
+
+    
+~\\Transoformatorja z jedrom RM10 sta bila načrtovana glede na tok nasičenja na primarju in razmerja 1:10 ter 1:20 izbrana poljubno. Potrebno je povdariti, da sta bila načrtovana kot navadna transformatorja in ne kot flyback......
+
+~
+\\Z jedrom EFD 30/15/9 smo opravljali meritve, saj je zelo podoben temu jedru, ki je v transformatorjih od Coilcrafta. Edina razlika je, da je naše jedro brez zračne reže. 
+
+
+    
+    Pomeril sem pa tudi že narejene flyback transformatorje, kateri so mi ostali od nekega drugega projekta. In sicer GA3459 in GA3460 proizvajalca Coilcraft. Z njima sem dosegal napetosti nekinekineki vendar sta imela nazivno izolacijo samo \SI{1500}{\volt_{rms}}, kar je v praksi pomenilo, da ko je transformator dosegel izhodno napetost približno \SI{10}{\kilo\volt} se je začelo slišati kako prihaja do preboja med navitji.
+    Izkazalo se je, da bo potrebno prilagoditi prvotne zahteve in sicer potrebno bo uporabiti transformator, katerega se čedalje težje dobi - flyback transformator iz televizorja s katodno cevjo. Za barvne televizorje so običajno \SI{35}{\kilo\volt} in \SI{40}{\watt}, poleg tega imajo tudi vgrajene visokonapetostne diode. Prvi testi so se izkazali za več kot odlični, saj pri napjalni napetosti \SI{12}{\volt} z delovnim ciklom od 0 do 25\% lahko pokrijemo celotno željeno napetostno območje. Poleg tega je pa tudi magnetilni tok na primarnem navitju precej nižji, kot pa pri alternativah. 
+    Nam pa seveda ta rešitev prinese druge probleme. Izredno težko bi bilo dobiti nadomestni transformator kateri ima podobne karakteristike ter enako podnožje. Podatkovnega lista se pa tudi ne dobi, v simulacijah bi bilo v veliko pomoč, če bi imel podano induktivnost sekundarnega navitja. Le to je nemogoče pomeriti z navadnim RLC merilnikom, saj imajo takšni transformatorji med zaporedno vezanimi sekundarnimi navitji visokonapeotne diode. Razmerje med številoma ovojev na primarnem navitju in na sekundarnem navitju bi pa prišlo prav pri izračunih za določene napetostne regulatorje.
+    Vendar vseeno prednosti odtehtajo te probleme. 
+    Regulacija nam je pa tudi povzročila kar nekaj problemov. Že samo območje regulacije od \SI{250}{\volt} do \SI{15}{\kilo\volt} ni tako majhno, zraven je pa bila tudi želja po meritvi izhodne napetosti in shranjevanju vrednosti le te v povzetek tesiranja. Prvotno sem se zatekel proti že namenskim čipom za regulatorje napetosti, saj bi potreboval samo prilagoditi povratno vezavo. Prve simulacije, katere so obrodile sadove so bile s krmilnikom LT3757. S tem krmilnikom je povratna povezava narejena z napetostnim delilnikom, kateri ni izoliran. Potreben bi bil AC-DC napajalnik, kateri ima prebojno trdnost vsaj 15kV ali baterijsko napajanje za čas polenenja praznilnega kondenzatorja.
+    Nobena od teh rešitev mi ni najbolj ustrezala, zato sem simuliral še druge flyback nametostne regulatorje, kateri imajo drugačne načine povratne vezave. Povratna vezava z optospojnikom ni primerna, saj je vseeno potrebno spreminjati vrednost napetostnega delilnika na visokonapetostni strani. Regulacija s pomožnim navitjem je po prvotnih simulacijah izgledala obetavno, ko sem pa popravil vrednosti induktivnosti na vrednosti našega transformatorja se je krmilnik nehal odzivati kot je bilo pričakovano. Zadnja rešitev je bila krmilnik, kateri za povratno vezavo meri zrcaljeno napetost iz sekundarnega navitja proti primarnemu. 
+    Simulacije so bile izredno obetavne z krmilnikom LT8304, prav tako meritve opravljene na vezju naspajkanem na prototipni ploščici. Žal je po nekaj časa krmilnik nehal delovati. Naredil sem še enega identičnega, kateri je doživel enako usodo. Predvidevam, da je kriv interni MOSFET, kateri nima načrtovane zaščite za tako visoke zrcalne napetosti kot so v mojem primeru. Na srečo ima proizvajalec Linear Technology v svojem programu tudi krmilnik LT3748 kateri ima povratno vezavo po enakem principu, le da tukaj je zunanji MOSFET, katerega lahko izberemo z primerno visoko maksimalno zaporno napetostjo.
+    Izkazal se je za najboljšega kandidata po simlacijah, vendar je potrebno povadati da glede na meritve na transformatorju predvidevam, da ima ta v jedru režo, kar pa je dokaj zahtevno za modelirati zato sem delal simulacije z transformatorjem brez reže. Žal se je izkazalo, da z našim transformatorjem regulacije ne deluje pravilno, saj je neodvisno od vrednostni upora v povarni vezavi krmilnik na vrata MOSFETa pošiljal signal širine približno \SI{55}{\micro\second}, kar je po podatkovnem listu maksimalni čas odprtega MOSFETa. Enačba za izhodno napetost je 
+    \begin{equation}
+       \\ V_{OUT}=V_{BG}*\left(\frac{R_{FB}} {R_{REF}} \right)*\left(\frac{1} {N_{PS}} \right) - V_{F} - I_{SEC}*(ESR) 
+    \end{equation}
+    \\Pri tem lahko zanemarimo \(V_{F}\) in \(I_{SEC}*(ESR)\) ter iz podatkovnega lista lahko izločimo, da je \(V_{BG}=1V\). In dobimo sledečo enačbo.
+    \begin{equation}
+       \\ V_{OUT} = \left(\frac{R_{FB}} {R_{REF}} \right)*\left(\frac{1} {N_{PS}} \right)
+    \end{equation}
+    \\Za minimalno vrednost primarnega navija je pa sledeča enačba.
+    \begin{equation}
+       \\ L_{PRI(MIN)} = \frac{\left(V_{OUT} + V_{F(DIODE)}\right) * R_{SENSE} * t_{SETTLE(MIN)} * N_{PS}} {V_{SENSE(NIN)}}
+    \end{equation}
+    ~\\Pri kateri so podani podatki \(V_{SENSE(MIN)}=\SI{15}{\milli\volt}\) ter \(t_{SETTLE(MIN)}=\SI{400}{\nano\second}\), \(V_{F(DIODE)}\) pa lahko zanemarimo). Za \(R_{SENSE}\) bomo pa uporabili \SI{10}{\milli\ohm}. Druga enačba za minimalno induktivnost primarnega navitja je pa.
+    \begin{equation}
+        \\ L_{PRI(MIN)} = \frac{(V_{IN(MAX)} * R_{SENSE} * t_{ON(MIN)} * N_{PS}} {V_{SENSE(NIN)}}
+    \end{equation}
+    \\Pri kateri je podan \(t_{ON(MIN)}=\SI{250}{\nano\second}\). 
+    ~\\Razmerja ovojev primarnega in sekundarnega navitja nimamo podanega in zaradi diod v sekundarnem navitju ni ravno enostavno izmeriti sem to vrednost predpostavil. Podatki so \(R_{REF}=\SI{6.04}{\kilo\ohm}\), \(V_{OUT(MAX)}=\SI{15}{\kilo\volt}\), \(V_{OUT(MIN)}=\SI{250}{\volt}\) in \(N_{PS}=0.1\).
+    Ko poračunamo enačbe dobimo sledeče rezultate za razpon upora za povratno vezavo \(R_{FB(MAX)}=\SI{9.04}{\mega\ohm}\), \(R_{FB(MIN)}=\SI{151}{\kilo\ohm}\). Za minimalne induktivnosti primarnega navitja \(L_{PRI(MIN)}=\SI{400}{\micro\henry}\) in \(L_{PRI(MIN)}=\SI{2}{\micro\henry}\), upoštevati moramo višjo vrednost sepravi \(\SI{400}{\micro\henry}\).
+    Naša transformatorja imata induktivnosti primarnih navitij \SI{411}{\micro\henry} in \SI{330}{\micro\henry}, kar pomeni, da s tem krmilnikom lahko uporabimo samo večji transformator. 
+~\\Vendar po 3 poskusih je vedno krmilnik odpovedal. Po približno minuti delovanja ni več kazal znakov življenja. Glede na izmerjenih \SI{0}{\volt} na nogici številka 5, kjer deluje interni linearni regulator predvidevam, da je ta odpovedal in posledično celotni krmilnik ne deluje več. Edina rešitev, katera nam preostane je izdelava svojega krmilnika z mikrokrmilnikom, izoliranim ADCjem ter PID regulatorjem. V tem času so se spremenile zahteve na maksimalno napetost \SI{4}{\kilo\volt} kar nam olajša izbiro komponent. Za ADC sem prvotno hotel uporabiti takšnega, kateri ima že vgrajeno izolacijo naprimer AD7405 proizvajalca Analog Devices. Vendar se nam tu pojavi problem izoliranega napajanja, saj je vseeno potrebno načrtovati napajalnik z transformatorjem, kateri ima vsaj \SI{4}{\kilo\volt} prebojne trdnosti. Rešitev so digitalni izolatorji serije ISOW proizvajalca Texas Instruments. Slednji imajo 4 ali 6 izoliranih digitalnih kanalov ter izolator napetosti. Tako lahko uporabimo normalni ADC, kateri ustreza našim zahtevam in še vedno ustrezamo varnostnim zahtevam glede izolacije.
+    
+    \chapter{Visokonapetostno stikalo} \label{Visokonapetostno_stikalo}
+
+    Standard zahteva "Bounce-less" stikalo sepravi stikalo, katero ko sklene kontakt ga ne razklene več. Prvotna izbira je bil model G61A proizvajalca Gigavac, kateri se tudi nahaja v simulatorjih elektrostatične razelektritve, saj je v specifikacijah povdarjeno: Odličen za praznjenje kondenzatorjev ter efektivno operira brez "bouncinga".
+    Vendar se cena takšenga releja giba okoli 2000\euro{}. Zaradi omejenega proračuna ni bilo mogoče odobriti nakup dotičnega releja. Dobra alternativa se je zdel rele serije H proizvajalca Medler electronics (sedaj Standex electronics) kateri ima v specifikacijah navedeno "Zamenjava za mokre releje z živim srebrom". Pri ceni okoli 50\euro{} se je to zdelo predobro, da bi bilo res.
+    Testi so pokazali točno to, kar smo pričakovali: skakanje kontaktov.
+    
+    \begin{figure}[H]
+        \begin{circuitikz}
+           \draw (2,1)
+            to[V, v=$Sig$] (2,3)
+            to[short] (4,3)
+            to[L] (4,1)
+            to[short] (2,1);
+        
+           \draw (0,0)
+            to[short] (0,1)
+            to[C=10nH] (0,3)
+            to[short] (0,4)
+            to[R=10Ohm] (5,4)
+            to[normal open switch] (5,0)
+            to[short] (0,0);
+    
+        \draw (2.5,6) node[oscopeshape](osc1){}
+        (osc1.left) node[anchor=west] {}
+        (osc1.right) node[anchor=east] {};
+        
+        \draw (osc1.left)
+        to[short] (0,6)
+        to[short] (0,4);
+        
+        \draw (osc1.right)
+        to[short] (5,6)
+        to[short] (5,4);
+        
+        \draw (0,4) node[circ]{};
+        \draw (5,4) node[circ]{};
+	\end{circuitikz}
+	   \caption{\label{MerilnoVezjeRele} Shema vezja za merjenje relejev.}
+    \end{figure}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\columnwidth]{Slike/MedlerElectronicsRele.png}
+        \caption{\label{BlokDiagramShema} Skakanje kontaktov pri releju proizvajalca Medler electronics.}
+    \end{figure}
+    ~\\Po specifikacijah bo največji tok čez rele \SI{10}{\ampere}, saj imamo maksimalno napetost \SI{15}{\kilo\volt} in kondenzator praznimo z \SI{1500}{\ohm} uporom. Zaradi varnosti sem pri merjenju sem spremenil RC konstanto iz \SI{1500}{\ohm} in \SI{100}{\pico\farad} na \SI{10}{\ohm} in \SI{10}{\nano\farad} katero sem napajal iz \SI{100}{\volt}. Na posnetku zaslona iz osciloskopa se lepo vidi razklenitev pri \SI{40}{\micro\second} in \SI{55}{\micro\second}. Po ponovitvah sem ugotovil, da so razklenitve časovno zelo konstantne. Nastala je ideja o vezanju dveh ali več enakih relejev vzporedno in vzbujanje le teh s časovnim zamikom, saj bi tako premostili razklenitev. Vendar bi s tem dodali kapacitivnost v sistem na katero moramo biti zelo pozorni saj standard dovoljuje maksimalno \SI{20}{\nano\second} deviacije časovne konstante kar nanese na \SI{13}{\pico\farad}.
+    Iz radovednosti sem naredil meritve še pri višjih napajalnih napetostih vzbujevalne tuljave, kjer sem predpostavljal, da bo magnetno polje dovolj močno, da se kontakt ne bo uspel odbiti. Vendar temu ni bilo tako saj tudi pri trojni napajalni napetosti so se prekitivne še vedno dogajale. 
+    
+    ~\\Mojo pozornost je pritegnil tudi izdelek podjetja Behlke, katero se ukvarja z visokonapetostno in močnostno elektroniko. Izdelek je bil HTS 181-02-C hitro visokonapetostno tranzistorsko stikalo. Dotični model ima maskimalno napetost \SI{18}{\kilo\volt} ter maksimalno tokovno špico \SI{12}{\ampere}. Malo manj vzpodbudne so številke za čas naraščanja saj v naših primerih bi bile od \SI{12}{\nano\second} do \SI{25}{\nano\second}. Kar je precej več kot \SI{10}{\nano\second} kot jih zahteva standard. Cena takega stikala je okoli 1100\euro , tako da zopet presega naš proračun. Po pregledu fotografij tega stikala in podobnih sem našel sliko, kjer je bil brez pokrova. Najbolj me je zanimal kako je bil izveden visokonapetostni del. Izgleda da uporabljajo več zaporedno vezanih tranzistorjev. Porodila se je ideja o načrtovanju takšnega stikala z komercialno dobavljivimi komponentami.
+    Prva ovira je bila izbirane polprevodnikov, kateri so primerni za nalogo. IGBTji IXYL60N450 proizvajalca LittleFuse so se na papirju izkazali za najboljše, saj imajo maksimalno VCES napetost \SI{4.5}{\kilo\volt} vendar imajo tipični odpiralni čas \SI{55}{\nano\second} kar je še vedno 5.5 krat preveč. 
+    %preveri spodnjo trditev
+    Sem pa našel tranzistorje kateri so bili namenjenei za \SI{10}{\kilo\volt} z risetime okoli \SI{10}{\nano\second}. Tako bi lahko uporabili dva in ju zbondirali na tiskano vezje in s tem zmanjšali parazitne kapacitivnosti in induktivnosti. Vendar zaradi tako hitrega rise timea spadajo te tranzistorji pod Dual use in za nakup le teh potrebno podpisati NDA.
+    \\Vendar mi je dalo misliti, če se uporabi najbolj idealne komericalne tranzistorje, jih odstrani iz ohišja, zbondira na tiskano vezje. Kakšne čase bi potem dobili. Preden začnem risati tiskano vezje sem hotel v simulatorju zasnovati še krmilnik. Uporabljeni bi bili IGBTji zato je potrebno krmilno napetost pripeljati med vrata in emitor. V mojem primeru je potencial emitorja navijšega IGBTja proti masi \SI{11.25}{\kilo\volt}. S primernimi visokonapetostnimi stikali bi lahko krmilil na način "Switched Cap".
+    %shema swtiched cap
+    \begin{figure}[H]
+        \begin{circuitikz}
+            \draw (0,0)
+            to[V, v=$Sig$] (0,3)
+            to [short] (1.185,3)
+            to[short] (1.185,2.85);
+            
+            \draw (1.5,2.3)
+            node[spdt, rotate=90] (sw1) {}
+            (sw1.in) node[left] {};
+            
+            \draw (1.5,0.7)
+            node[spdt, rotate=-90, yscale=-1] (sw2) {}
+            (sw2.in) node[left] {};;
+             
+            \draw (sw1.in)
+            to[C] (sw2.in);
+           
+            \draw  (1.815,0.15)
+            to[short] (1.815,0)
+            to[short] (4,0)
+            to[short] (4,1.5);
+            
+            \draw (4,2)
+		node[nigfetd](Q){}
+		(Q.G) node[left] {};
+		
+		\draw (Q.G) to[short] (3.0145,3)
+		to[short] (1.815,3)
+		to[short] (1.815, 2.85);
+		
+		\draw (0,0)
+            to[short] (1.185, 0)
+            to[short] (1.185, 0.15);    
+        \end{circuitikz}
+                \caption{\label{SwitchedCapFetDriver} Shema idejne zasnove krmiljenja tranzistorja preko "Switched Cap".}
+    \end{figure}
+    Naletel sem pa na članek \cite{doi:10.1063/1.1143294} kjer so potrebovali podobno rešitev, ki so jo reševali z transformatorji kateri so imeli 1:1 razmerje in primerno prebojno trdnost. V simulacijah se je rešitev obnesla. V resničnem svetu bi me pa skrbelo, če bi kakšen krmilnik ali tranzistor le malo zakasnil, saj bi takrat prisala celotna napetost na njemu kar bi seveda pomenilo preobremenitev le tega.
+    \\V iskanju nadaljnih rešitev to pomeni mehanično rešitev in samo eno stikalo ne zaporene ali vzporedne vezave stikal. Lotili smo se hitrih prototipov štirih stikal:
+    \begin{enumerate}
+   
+        \item  Solenoid, kateri drži razklenjena kontakta, skupaj ju vleče vzmet. Ob prožitvi se obrne polariteta napajanja tuljave solenoida, kateri poleg vzmeti tišči kontakta skupaj.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\columnwidth]{Sheme/StikaloSolenoidVerzija1.pdf}
+        \caption{\label{/StikaloSolenoidVerzija1} Shema stikala s solenoidom verzija 1.}
+    \end{figure}
+    
+    \item  Solenoid kateri, porine kontakt in jezička ga ujameta.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\columnwidth]{Sheme/StikaloSolenoidVerzija2.pdf}
+        \caption{\label{/StikaloSolenoidVerzija2} Shema stikala s solenoidom verzija 2.}
+    \end{figure}
+    
+    \item  Servo motor se zasuče in z drsnim stikalom skelene kontakt.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\columnwidth]{Sheme/StikaloServoVerzija1.pdf}
+        \caption{\label{StikaloServoVerzija1} Shema stikala s servo motorjem verzija 1.}
+    \end{figure}
+    
+    \item  Servo motor se zasuče in pritisne na kontakt kateri je na vzmeti.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\columnwidth]{Sheme/StikaloServoVerzija2.pdf}
+        \caption{\label{StikaloServoVerzija2} Shema stikala s servo motorjem verzija 2.}
+    \end{figure}
+\end{enumerate}
+
+
+    ~\\Za solenoid smo na začetku uporabili manjši model, kateri je bil namenjen konstantnemu delovanju pri \SI{12}{\volt}, za hitrejše delovanje in večjo slilo se ga lahko prenapaja z  \SI{40}{\volt} za čas  \SI{1}{\second} z delovnim ciklom 5\%. Izkazal se je za neuporabnega, saj čim se na njega namesti kontakt nima več zastostne moči za premikanje, posebno če bi se moral še upirati sili vzmeti. Za hitri preiskus mojih tez sem naredil solenoid na tuljanviku od transformatorja.
+    %probat še z močnejšim solenoidom
+    
+    ~\\S stikalo s servo motorjem smo imeli dokaj dobre uspehe vendar smo še vedno bili daleč od končne rešitve. Hitre meritve prototipa stikala z servo motorjem verzija 1 so pokazale rise time  \SI{10}{\nano\second} vendar se vseeno pojavljajo manjše prekinitve po sklenitvi kontaktov. Skrbi me pa tudi obraba in oksidacija kontaktov. Rešitev bi bila zaprtje celotnega stikala v vakumsko komoro ali še bolje $SF_{6}$.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\columnwidth]{Slike/ServoStikalo1/ServoStikalo1.png}
+        \caption{\label{ServoStikalo1} Potek napetosti po sklenitvi kontaktov pri servo stikalu verzija 1.}
+    \end{figure}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\columnwidth]{Slike/ServoStikalo1/ServoStikalo1povecano.png}
+        \caption{\label{ServoStikalo1povecano} Potek napetosti po sklenitvi kontaktov pri servo stikalu verzija 1 povecano.}
+    \end{figure}
+    
+    ~\\Stikalo s servo motorjem verzija 2 pa je problem počasnega rise tima. Verjetno je kriva vsa parazitna kapacitivnost. Potrebno bi bilo narediti revizijo in skrajšati vse segmente žice in narediti kontakte bolj kompaktne. 
+    

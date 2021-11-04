@@ -8,17 +8,17 @@
 \contentsline {section}{\numberline {2.2}Zasnova simulatorja elektrostatične razelektritve}{6}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}Moduli simulatorja}{7}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}Nastavljivi visokonapetostni napajalnik}{8}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Regulacija napetosti}{9}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.3}Regulacija napetosti}{10}{subsection.2.2.3}%
 \contentsline {subsubsection}{\numberline {2.2.3.1}LM5155}{10}{subsubsection.2.2.3.1}%
 \contentsline {subsubsection}{\numberline {2.2.3.2}UCC28740-Q1}{10}{subsubsection.2.2.3.2}%
-\contentsline {subsubsection}{\numberline {2.2.3.3}LT3748}{10}{subsubsection.2.2.3.3}%
+\contentsline {subsubsection}{\numberline {2.2.3.3}LT3748}{11}{subsubsection.2.2.3.3}%
 \contentsline {subsubsection}{\numberline {2.2.3.4}LT3757}{11}{subsubsection.2.2.3.4}%
 \contentsline {subsubsection}{\numberline {2.2.3.5}LT8304}{12}{subsubsection.2.2.3.5}%
 \contentsline {subsubsection}{\numberline {2.2.3.6}Ugotovitve}{13}{subsubsection.2.2.3.6}%
 \contentsline {subsubsection}{\numberline {2.2.3.7}Krmilnik z mikrokrmilnikom}{13}{subsubsection.2.2.3.7}%
-\contentsline {subsection}{\numberline {2.2.4}Visokonapetostno stikalo}{15}{subsection.2.2.4}%
-\contentsline {subsubsection}{\numberline {2.2.4.1}Komercialno dobavljivi releji}{15}{subsubsection.2.2.4.1}%
-\contentsline {subsubsection}{\numberline {2.2.4.2}Komercialna tranzistorska rešitev}{19}{subsubsection.2.2.4.2}%
-\contentsline {subsubsection}{\numberline {2.2.4.3}Samogradnja tranzistorskega visokonapetostnega stikala}{19}{subsubsection.2.2.4.3}%
-\contentsline {subsubsection}{\numberline {2.2.4.4}Mehanska rešitev}{20}{subsubsection.2.2.4.4}%
+\contentsline {subsection}{\numberline {2.2.4}Visokonapetostno stikalo}{16}{subsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.4.1}Komercialno dobavljivi releji}{16}{subsubsection.2.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.2.4.2}Komercialna tranzistorska rešitev}{20}{subsubsection.2.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.2.4.3}Samogradnja tranzistorskega visokonapetostnega stikala}{20}{subsubsection.2.2.4.3}%
+\contentsline {subsubsection}{\numberline {2.2.4.4}Mehanska rešitev}{21}{subsubsection.2.2.4.4}%
 \contentsline {chapter}{\numberline {3}Sklep}{27}{chapter.3}%

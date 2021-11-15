@@ -1,42 +1,25 @@
 \begin{thebibliography}{10}
 
-\bibitem{MIL-STD-883K}
-Microcircuits test standards.
-\newblock Standard, 06 2013.
+\bibitem{Behlke:HTS181-02-C}
+{\em Fast High Voltage Transistor Switches}, 03 2013.
+\newblock Rev. 1.
 
-\bibitem{JS-001-2017}
-For electrostatic discharge sensitivity testing human body model (hbm) -
-  component level.
-\newblock Standard, May 2017.
+\bibitem{IXYS:IXYL60N450}
+{\em High Voltage XPT IGBT}, 11 2013.
+\newblock Rev. 1.
 
-\bibitem{ParallelHighVoltageMultipliers}
-Gary Hanington.
-\newblock Using parallel high voltage multipliers for 100kv downhole neutron
-  generator power supplies.
-\newblock {\em Additional Conferences (Device Packaging, HiTEC, HiTEN, \&
-  CICMT)}, 2014:000006--000012, 01 2014.
-
-\bibitem{TI:UCC28740}
-{\em Constant-Voltage Constant-Current Flyback Controller Using Optocoupled
-  Feedback}, 03 2018.
-\newblock Rev. C.
-
-\bibitem{Coilcraft:GA3459}
-{\em For Linear Technology LT3751 Capacitor Charger Controller}, 01 2017.
-\newblock Rev. A.
-
-\bibitem{TI:LT5155}
-{\em 2.2-MHz wide VIN, 1.5-A MOSFET driver, non-synchronous boost controller},
-  01 2021.
-\newblock Rev. C.
+\bibitem{TI:UCC27517}
+{\em 4-A/4-A single-channel gate driver with 5-V UVLO and 13-ns prop delay in
+  SOT-23 package}, 12 2014.
+\newblock Rev. D.
 
 \bibitem{analog:LT3748}
 {\em 100V Isolated Flyback Controller}, 02 2015.
 \newblock Rev. B.
 
-\bibitem{analog:LT3757}
-{\em Boost, Flyback, SEPIC and Inverting Controller}, 01 2021.
-\newblock Rev. G.
+\bibitem{Standex:H}
+{\em H Series Reed Relays}, 01 2015.
+\newblock Rev. 01.
 
 \bibitem{analog:LT8304}
 {\em 100VIN Micropower No-Opto Isolated Flyback Converter with 150V/2A Switch},
@@ -47,22 +30,44 @@ Gary Hanington.
 {\em 35kV SPST-NO HV Relay}, 06 2017.
 \newblock Rev. 2.
 
-\bibitem{Standex:H}
-{\em H Series Reed Relays}, 01 2015.
-\newblock Rev. 01.
+\bibitem{Coilcraft:GA3459}
+{\em For Linear Technology LT3751 Capacitor Charger Controller}, 01 2017.
+\newblock Rev. A.
 
-\bibitem{Behlke:HTS181-02-C}
-{\em Fast High Voltage Transistor Switches}, 03 2013.
-\newblock Rev. 1.
+\bibitem{TI:UCC28740}
+{\em Constant-Voltage Constant-Current Flyback Controller Using Optocoupled
+  Feedback}, 03 2018.
+\newblock Rev. C.
 
-\bibitem{IXYS:IXYL60N450}
-{\em High Voltage XPT IGBT}, 11 2013.
-\newblock Rev. 1.
+\bibitem{TI:LT5155}
+{\em 2.2-MHz wide VIN, 1.5-A MOSFET driver, non-synchronous boost controller},
+  01 2021.
+\newblock Rev. C.
+
+\bibitem{analog:LT3757}
+{\em Boost, Flyback, SEPIC and Inverting Controller}, 01 2021.
+\newblock Rev. G.
 
 \bibitem{doi:10.1063/1.1143294}
-R.~E. Continetti, D.~R. Cyr, and D.~M. Neumark.
+{\sc Continetti, R.~E., Cyr, D.~R., and Neumark, D.~M.}
 \newblock Fast 8 kv metal–oxide semiconductor field‐effect transistor
   switch.
-\newblock {\em Review of Scientific Instruments}, 63(2):1840--1841, 1992.
+\newblock {\em Review of Scientific Instruments 63}, 2 (1992), 1840--1841.
+
+\bibitem{ParallelHighVoltageMultipliers}
+{\sc Hanington, G.}
+\newblock Using parallel high voltage multipliers for 100kv downhole neutron
+  generator power supplies.
+\newblock {\em Additional Conferences (Device Packaging, HiTEC, HiTEN, \&
+  CICMT) 2014\/} (01 2014), 000006--000012.
+
+\bibitem{JS-001-2017}
+For electrostatic discharge sensitivity testing human body model (hbm) -
+  component level.
+\newblock Standard, May 2017.
+
+\bibitem{MIL-STD-883K}
+Microcircuits test standards.
+\newblock Standard, 06 2013.
 
 \end{thebibliography}

@@ -370,13 +370,14 @@ Krmilnik LT3757 proizvajalca Linear Technology~\cite{analog:LT3757}, je krmilnik
 Problem tega krmilnika pa je varnost, ker je sekundarno navitje visokonapetostnega transformatorja električno povezano z nizkonapetostno stranjo. Za zagotavljanje primerne izolacije bi moral napajalnik modula zdržati \SI{15}{\kilo\volt}, kar ponovno pomeni načrtovanje takega napajalnika. Napajalniki z najvišjo prebojno trdnostjo so namreč s certifikatom IEC 60601-1, ki zagotavlja najvišjo prebojno trdnost \SI{4000}{\volt}AC.
 
 	\subsubsection{LT8304} \label{LT8304}
-LT8304 proizvajalca Linear Technology ~\cite{analog:LT8304} deluje po podobnem principu kot LM3748 z razliko, da ima vgrajen MOSFET in posledično manjšo izhodno moč. Simulacije so bile obetavne vendar sem jih vzel z rezervo, zaradi netočnosti modela transformatorja. Vseeno sem se odločil narediti prototipno ploščo s krmilnikom in pripadajočimi komponentami. Vezje je delovalo po pričakovanjih, vendar se je po približno 20 sekundah pokadilo iz krmilnika. Mislil sem, da je to bil samo problem z dotičnim krmilnikom in sem uporabil novega. Tudi pri temu se je pokadilo. Omenjen krmilnik ima maksimalno moč \SI{24}{\watt}, vendar pri meritvah moč ni presegla \SI{10}{\watt}. Potrebno se je pa zavedati, da je bil na izhodu napajalnika kondenzator s \SI{4700}{\micro\farad}, zaradi katerega napajalnik ni pokazal napetostnih špic, zaradi katerih je bila presežena izhodna moč. Drugi del, kjer bi lahko prihajalo do napake je na pinu SW, kateri je ponor internega MOSFETa. Lahko, da inducirana napetost na primarnem navitju je višja od \(U_{DS MAX}\) in posledično poškoduje čip. Podatkovni list narekuje uporabo Schottky in Zenner diode s pragovno napetostjo \(V_{Zenner(MAX)} \leq 145 V - V_{IN(MAX)}\) proti napajalni liniji za odvajanje prenapetostnih špic. V mojem primeru sem uporabil Zenner diodo s pragovno napetostjo \SI{100}{\volt}, vendar očitno ni bila dovolj. Imel sem še en krmilnik pri katerem sem namesto priporočene prenapetostne zaščite uporabil TVS diodo, z nominalno napetostjo \SI{70}{\volt} in maksimalnim tokom \SI{26.5}{\ampere}. Toda rezultat je bil še vedno isti.
+LT8304 proizvajalca Linear Technology ~\cite{analog:LT8304} deluje po podobnem principu kot LM3748 z razliko, da ima vgrajen MOSFET in posledično manjšo izhodno moč. Simulacije so obetale, vendar jim ni moč zaupati zaradi netočnosti modela transformatorja. Vseeno sem poskusil izdelati prototipno ploščo s krmilnikom in pripadajočimi komponentami. Vezje je delovalo po pričakovanjih, vendar se je po približno 20 sekundah začelo kaditi iz krmilnika, zato sem uporabil nov krmilnik.
+Tudi pri temu se je začelo kaditi. Ta krmilnik ima maksimalno moč \SI{24}{\watt}, pri meritvah pa moč ni presegla \SI{10}{\watt}. Dejstvo pa je, da je bil na izhodu napajalnika kondenzator s \SI{4700}{\micro\farad}, zaradi katerega napajalnik ni pokazal napetostnih špic, zaradi katerih je bila presežena izhodna moč. Drugi del, kjer bi lahko prišlo do napake je na pinu SW, ki je ponor internega MOSFETa. Mogoče je, da je inducirana napetost na primarnem navitju je višja od \(U_{DS MAX}\) in posledično poškoduje čip. Podatkovni list narekuje uporabo Schottky in Zenner diode s pragovno napetostjo \(V_{Zenner(MAX)} \leq 145 V - V_{IN(MAX)}\) proti napajalni liniji za odvajanje prenapetostnih špic. V mojem primeru sem uporabil Zenner diodo s pragovno napetostjo \SI{100}{\volt}, kar pa očitno ni zadoščalo. Na zadnjem krmilniku sem namesto priporočene prenapetostne zaščite uporabil TVS diodo, z nominalno napetostjo \SI{70}{\volt} in maksimalnim tokom \SI{26.5}{\ampere}. Vendar je bil rezultat še vedno isti.
 
     \subsubsection{Ugotovitve} \label{Ugotovitve glede komercialnih krmilnkov}
-Po vseh simulacijah se je izkazalo, da ne bo mogoče uporabiti že narejenega krmilnika, vendar bo potrebno tudi krmilnik načrtovati od začetka. Možna rešitev je uporaba krmilnika LT3757, vendar namesto napajanja z omrežnim napajalnikom bi potrebno bilo uporabiti baterijsko napajanje. Baterije bi se polnile, ko je visokonapetostni napajalnik izklopljen, ob vklopu le-tega se baterije galvansko loči od polnilnika s pomočjo odklopnika kateri ima prebojno napetost vsaj \SI{15}{\kilo\volt}. Takšen odklopnik zopet pomeni nekaj zelo specifičnega in dragega ali pa samoizdelavo. 
+Simulacija so pokazale, da ne bo mogoče uporabiti že narejenega krmilnika, ampak ga bo potrebno načrtovati od začetka. Možna rešitev bi bila uporaba krmilnika LT3757, vendar bi bilo namesto napajanja z omrežnim napajalnikom potrebno uporabiti baterijsko napajanje. Baterije bi se polnile ob izklopu visokonapetostnega napajalnika, ob vklopu pa se baterije galvansko loči od polnilnika s pomočjo odklopnika,  ki ima prebojno napetost vsaj \SI{15}{\kilo\volt}. Takšen odklopnik pa ponovno pomeni veliko specifiko z visoko ceno oz. samoizdelavo. 
 
 	\subsubsection{Krmilnik z mikrokrmilnikom} \label{KrmilnikzUc}
-Edina možnost, ki nam je še ostala je bila izdelava visokonapetostnega krmilnika z mikrokrmilnikom. Krmilnik bo opravljal le vlogo krmiljenja visokonapetostnega napajalnika. Vhodni signal bo prejel preko serijske povezave, povratna vezava bo pa preko analogno-digitalnega pretvornika, kateri bo na mikrokrmilnik povezan preko optičnega izolatorja za digitalne povezave.  Mikrokrmilnik je bil uporabljen STM32 iz družine F4, saj njegove operacije niso tako kritične in je lahko uporabljen praktično kateri koli mikrokrmilnik. Z STM Cube razvojim okoljem sem imel izkušnje že od prej, razvojna ploščica STM NUCLEO F4 je bila na zalogi v podjetju. Analogno-digitalni pretvornik tudi ni bil kritičen, saj za koncept nismo rabili neke visoke natančnosti, galvansko ločitev med visokonapetostnim in nizkonapetostnim delom je zagotavljal digitalni izolator z vgrajenim izolatorjem napajanja iz družine ISOW proizvajalca Texas Instruments. 
+Edina možnost, ki nam je še preostala je bila izdelava visokonapetostnega krmilnika z mikrokrmilnikom. Krmilnik bo opravljal le vlogo krmiljenja visokonapetostnega napajalnika. Vhodni signal bo prejel preko serijske povezave, povratna vezava pa bo preko analogno-digitalnega pretvornika, ki bo na mikrokrmilnik povezan preko optičnega izolatorja za digitalne povezave. Uporabljen je bil mikrokrmilnik STM32 iz družine F4, ker njegove operacije niso tako kritične in lahko uporabimo kateri koli mikrokrmilnik. S STM Cube razvojim okoljem sem se že predhodno seznanil, razvojna ploščica STM NUCLEO F4 pa je bila na zalogi v podjetju. Analogno-digitalni pretvornik tudi ni bil kritičen, saj za koncept nismo potrebovali visoke natančnosti, galvansko ločitev med visokonapetostnim in nizkonapetostnim delom pa je zagotavljal digitalni izolator z vgrajenim izolatorjem napajanja iz družine ISOW proizvajalca Texas Instruments. 
 
 	\begin{figure}[H]
     \centering
@@ -390,13 +391,15 @@ Edina možnost, ki nam je še ostala je bila izdelava visokonapetostnega krmilni
     \caption{\label{KrmilnikzuCShema} Shema programske kode visokonapetostnega krmilnika z mikrokrmilnikom.}
 	\end{figure}
 	
-Programska koda preveri, če glavni krmilnik še pošilja STOP signal, če ga ne prebere željeno napetost preko serijske povezave in nastavi delovni cikel na najkrajšega. Dokler izhodna napetost ne doseže nastavljene, počasi povečuje delovni cikel. Ko izhodna napetost doseže nastavljeno, pošlje glavnemu krmilniku TRIGGER signal, se pravi signal kateri sproži praznilni rele in postavi delovni cikel na 0. Počasno dviganje napetosti nam omogoča počasnejše polnenje kondenzatorja in posledično potrebujemo manjši transformator. S tem krmilnikom sem uspel krmiliti izhodno napetost, bilo pa bi potrebno na fino nastaviti PID parametre.
+Programska koda preveri, če glavni krmilnik še pošilja STOP signa. 
+
+Če ga ne pošilja, prebere željeno napetost preko serijske povezave in nastavi delovni cikel na najkrajšega. Dokler izhodna napetost ne doseže nastavljene, počasi povečuje delovni cikel. Ko izhodna napetost doseže nastavljeno, pošlje glavnemu krmilniku TRIGGER signal, to je signal, ki sproži praznilni rele in postavi delovni cikel na 0. Počasno dviganje napetosti omogoča počasnejše polnenje kondenzatorja in posledično je potreben manjši transformator. S tem krmilnikom je uspelo krmiliti izhodno napetost, potrebno pa bi bilo še podrobneje nastaviti PID parametre.
 
 	\subsection{Visokonapetostno stikalo} \label{Visokonapetostno stikalo}
-	Standard zahteva ''bounce-less'' stikalo stikalo, katero ko sklene kontakt, ga ne razklene več. V preteklosti so se prodajali releji, kateri so imeli kontakte v kapsuli in notri malo živega srebra. Živo srebro je poskrbelo, da v času ko sta bila kontakta odbita je tok lahko še vedno tekel preko živega srebra. Vendar je zaradi direktive RoHS je izbira takšnih relejev zelo omejena.
+	Standard zahteva ''bounce-less'' stikalo stikalo, ki sklene kontakt in ga ne razklene več. V preteklosti so bili na voljo, ki so imeli kontakte v kapsuli skupaj z živim srebrom. Živo srebro je poskrbelo, da v času ko sta bila kontakta odbita je tok lahko še vedno tekel preko živega srebra. Vendar je zaradi direktive RoHS izbira teh relejev zelo omejena.
 	
 	\subsubsection{Komercialno dobavljivi releji} \label{Komercialno dobavljivi releji}
-     Prvotna izbira je bil model G61A proizvajalca Gigavac ~\cite{Gigavac:G61A}, kateri se tudi nahaja v simulatorjih elektrostatične razelektritve, saj je v specifikacijah poudarjeno: Odličen za praznjenje kondenzatorjev ter efektivno operira brez skakanja kontaktov.
+     Prvotna izbira je bil model G61A proizvajalca Gigavac ~\cite{Gigavac:G61A}, ki se vgrajuje v simulatorje elektrostatične razelektritve, saj je v specifikacijah poudarjeno ''Odličen za praznjenje kondenzatorjev ter efektivno operira brez skakanja kontaktov.''
     
     \begin{figure}[H]
         \centering
@@ -404,16 +407,15 @@ Programska koda preveri, če glavni krmilnik še pošilja STOP signal, če ga ne
         \caption{\label{GigavacG61C} Slika releja G61A proizvajalca Gigavac.}
     \end{figure}    
     
-    Vendar se cena takšnega releja giba okoli 2000\euro{}. Zaradi omejenega proračuna ni bilo mogoče odobriti nakup dotičnega releja. Dobra alternativa se je zdel rele serije H proizvajalca Medler electronics ~\cite{Standex:H} (sedaj Standex electronics) kateri ima v specifikacijah navedeno ''Zamenjava za mokre releje z živim srebrom''. Pri ceni okoli 50\euro{} se je to zdelo predobro, da bi bilo res.
+    Cena tega releja giba okoli 2000\euro{}. Zaradi omejenega proračuna nakup tega releja ni bil možen. Dobro alternativo je predstavljal rele serije H, proizvajalca Medler electronics ~\cite{Standex:H} (sedaj Standex electronics), ki ima v specifikacijah navedeno ''Zamenjava za mokre releje z živim srebrom'' in je bil na voljo po ugodni ceni 50\euro{}.
+    
+Testi so po pričakovanju pokazali skakanje kontaktov.
     
     \begin{figure}[h]
         \centering
         \includegraphics[width=1\columnwidth]{Slike/MederReleH.png}
         \caption{\label{MederReleH} Slika releja serije H proizvajalca Meder.}
     \end{figure}        
-    
-    
-    Testi so pokazali točno to, kar smo pričakovali: skakanje kontaktov.
     
     \begin{figure}[H]
     \centering
@@ -456,19 +458,18 @@ Programska koda preveri, če glavni krmilnik še pošilja STOP signal, če ga ne
         \caption{\label{BlokDiagramShema} Skakanje kontaktov pri releju proizvajalca Medler electronics.}
     \end{figure}
     
-    ~\\Po specifikacijah bo največji tok čez rele \SI{10}{\ampere}, saj imamo maksimalno napetost \SI{15}{\kilo\volt} in kondenzator praznimo z \SI{1500}{\ohm} uporom. Zaradi varnosti sem pri merjenju spremenil RC konstanto iz \SI{1500}{\ohm} in \SI{100}{\pico\farad} na \SI{10}{\ohm} in \SI{10}{\nano\farad} katero sem napajal iz \SI{100}{\volt}. Na posnetku zaslona iz osciloskopa se lepo vidi razklenitev pri \SI{40}{\micro\second} in \SI{55}{\micro\second}. Po ponovitvah sem ugotovil, da so razklenitve časovno zelo konstantne. Nastala je ideja o vezanju dveh ali več enakih relejev vzporedno in vzbujanje le teh s časovnim zamikom, saj bi tako premostili razklenitev. Vendar bi s tem dodali kapacitivnost v sistem na katero moramo biti zelo pozorni saj standard dovoljuje maksimalno \SI{20}{\nano\second} odstopanja časovne konstante.
-    Iz radovednosti sem naredil meritve še pri višjih napajalnih napetostih vzbujevalne tuljave, kjer sem predpostavljal, da bo magnetno polje dovolj močno, da se kontakt ne bo uspel odbiti. Vendar temu ni bilo tako saj so se prekinitve še vedno dogajale tudi pri trojni napajalni napetosti.
+    ~\\Po specifikacijah je lahko največji tok, ki teče čez rele \SI{10}{\ampere}, saj je maksimalna napetost \SI{15}{\kilo\volt}, kondenzator pa se prazni preko \SI{1500}{\ohm} upora. Zaradi varnosti je bila pri merjenju RC konstanta spremenjena iz \SI{1500}{\ohm} in \SI{100}{\pico\farad} na \SI{10}{\ohm} in \SI{10}{\nano\farad}, napajana pa je bila z napetostjo \SI{100}{\volt}. Na posnetku zaslona osciloskopa je razvidna razklenitev pri \SI{40}{\micro\second} in \SI{55}{\micro\second}. Po ponovitvah sem zaključil, da so razklenitve pojavijo vedno ob istem času. Pojavila se je ideja o vzporednem vezanju dveh ali več enakih relejov in njihovem porženju s časovnim zamikom, ker bi na ta način lahko premostili razklenitev. Vendar bi s tem v sistem dodali kapacitivnost na katero moramo biti zelo pozorni, saj standard dovoljuje maksimalno \SI{20}{\nano\second} odstopanja časovne konstante.
+Eksperimentalno sem naredil meritve še pri višjih napajalnih napetostih vzbujevalne tuljave, kjer sem predpostavljal, da bo magnetno polje dovolj močno, da se kontakt ne bo uspel odbiti. Kljub temu so se prekinitve še vedno dogajale, tudi pri trojni napajalni napetosti.
    
 	\subsubsection{Komercialna tranzistorska rešitev} \label{Komercialna tranzistorska rešitev}   
     
-	Mojo pozornost je pritegnil tudi izdelek podjetja Behlke, katero se ukvarja z visokonapetostno in močnostno elektroniko. Izdelek je bil HTS 181-02-C ~\cite{Behlke:HTS181-02-C} hitro visokonapetostno tranzistorsko stikalo. Dotični model ima maksimalno napetost \SI{18}{\kilo\volt} ter maksimalno tokovno špico \SI{12}{\ampere}. Malo manj vzpodbudne so številke za čas naraščanja saj bi v naših primerih bile od \SI{12}{\nano\second} do \SI{25}{\nano\second}. Kar je precej več kot \SI{10}{\nano\second} kot jih zahteva standard. Cena takega stikala je okoli 1100\euro , tako da zopet presega naš proračun. Vendar sem našel sliko odprtega stikala, kar mi je porodilo idejo o samo-izdelavi tranzistorskega visokonapetostnega stikala.
+	Podjetje Behlke, ki se ukvarja z visokonapetostno in močnostno elektroniko, izdeluje HTS 181-02-C ~\cite{Behlke:HTS181-02-C} hitro visokonapetostno tranzistorsko stikalo. Ta model ima maksimalno napetost \SI{18}{\kilo\volt} ter maksimalno tokovno špico \SI{12}{\ampere}. Nekoliko slabši so parametri časa naraščanja, saj bi bili v našem primeru med \SI{12}{\nano\second} do \SI{25}{\nano\second} (standard pa zahteva \SI{10}{\nano\second}). Tako stikalo ima ceno okoli 1100\euro , kar je močno presegalo naš proračun. Po ogledu fotografije odprtega stikala sem si zamisli, kako bi potekala lastna izvedba tranzistorskega visokonapetostnega stikala.
 	
 	\subsubsection{Samogradnja tranzistorskega visokonapetostnega stikala} \label{Samogradnja tranzistorskega visokonapetostnega stikala}
 	
-	Pozorno opazovanje slik visokonapetostnih stikal proizvajalca Behlke je prineslo ugotovitve, da je stikalo sestavljeno iz dveh delov: krmilni del in visokonapetostni del. Krmilni del ni zanimiv, vendar visokonapetostni je zelo, saj se vidi kako je zaporedno nanizanih okoli 10 tranzistorjev. Če predpostavimo, da imajo vsi tranzistorji enake karakteristike in se v istem času začnejo odpirati, bo napetost naraščala na vseh enako in skupni dvižni čas bo enak dvižnemu času tranzistorja. Prva ovira je bila izbiraje polprevodnikov, kateri so primerni za nalogo. IGBTji IXYL60N450 ~\cite{IXYS:IXYL60N450} proizvajalca LittleFuse so se na papirju izkazali za najboljše, saj imajo maksimalno \(V_{CES}\) napetost \SI{4.5}{\kilo\volt}, vendar imajo tipični odpiralni čas \SI{55}{\nano\second}, kar je še vedno 5.5 krat preveč. 
+	Stikalo je sestavljeno iz dveh delov: krmilni del in visokonapetostni del. Zanimivo je dejstvo, da je v visokonapetostnem delu zaporedno nanizanih okoli 10 tranzistorjev. Če predpostavimo, da imajo vsi tranzistorji enake karakteristike in se v istem času začnejo odpirati, bo napetost naraščala na vseh enako in skupni dvižni čas bo enak dvižnemu času tranzistorja. Prva izziv se je pojavil glede izbire primernih polprevodnikov. IGBTji IXYL60N450 ~\cite{IXYS:IXYL60N450} proizvajalca LittleFuse so bili teoretično najboljša izbira, saj imajo maksimalno \(V_{CES}\) napetost \SI{4.5}{\kilo\volt}, tipični odpiralni čas pa je \SI{55}{\nano\second}, kar je še vedno 5.5 krat preveč. 
 
-    Sem pa našel tranzistorje kateri so bili namenjeni za \SI{10}{\kilo\volt} z dvižnim časom okoli \SI{10}{\nano\second}. Tako bi lahko uporabili dva in ju zbondirali na tiskano vezje in s tem zmanjšali parazitne kapacitivnosti in induktivnosti. Vendar zaradi tako hitrega dvižnega časa spadajo ti tranzistorji pod ''izdelke z dvojnim namenom'' in za nakup le teh potrebno podpisati pogodbo o nerazkritju informacij.
-Vendar mi je dalo misliti, če se uporabi najbolj idealne komercialne tranzistorje, jih odstrani iz ohišja in zbondira na tiskano vezje. S tem bi lahko dosegli najnižje vrednosti parazitnih kapacitivnosti in induktivnosti. Preden začnem risati tiskano vezje sem hotel v simulatorju zasnovati še krmilnik. Uporabljeni bi bili IGBTji zato je potrebno krmilno napetost pripeljati med vrata in emitor. V mojem primeru je potencial emitorja najvišjega IGBTja proti masi \SI{11.25}{\kilo\volt}. S primernimi visokonapetostnimi stikali bi lahko krmilil na način s preklopi kondenzatorja t.i. ''Switched Cap''.
+    Naknadno sem naletel na tranzistorje, ki so bili namenjeni za \SI{10}{\kilo\volt} z dvižnim časom okoli \SI{10}{\nano\second}. Mogoče bi bilo uporabiti dva in ju zbondirali na tiskano vezje in s tem zmanjšali parazitne kapacitivnosti in induktivnosti. Zaradi hitrega dvižnega časa spadajo ti tranzistorji pod ''izdelke z dvojnim namenom'', kar pomeni, da je za nakup potrebno podpisati pogodbo o nerazkritju informacij. Najnižje vrednosti parazitne kapacitivnosti in induktivnosti bi tako lahko dosegli z uporabo najbolj primernih tranzistorjev odstranjenih iz ohišja in zbondiranih na tiskano vezje. Pred risanjem tiskanega vezja sem želel v simulatorji zasnovati še krmilnik. Uporabljeni so bili IGBTji, zato je bilo potrebno krmilno napetost pripeljati med vrata in emitor. V mojem primeru je potencial emitorja najvišjega IGBTja proti masi znašal \SI{11.25}{\kilo\volt}. S primernimi visokonapetostnimi stikali bi bilo možno krmiljenje na način s preklopi kondenzatorja t.i. ''Switched Cap''.
 
     %shema swtiched cap
     \begin{figure}[H]
@@ -499,6 +500,12 @@ Vendar mi je dalo misliti, če se uporabi najbolj idealne komercialne tranzistor
 		node[nigfetd](Q){}
 		(Q.G) node[left] {};
 		
+		
+		
+		
+		
+		
+		
 		\draw (Q.G) to[short] (3.0145,3)
 		to[short] (1.815,3)
 		to[short] (1.815, 2.85);
@@ -509,62 +516,66 @@ Vendar mi je dalo misliti, če se uporabi najbolj idealne komercialne tranzistor
         \end{circuitikz}
                 \caption{\label{SwitchedCapFetDriver} Shema idejne zasnove krmiljenja tranzistorja preko ''Switched Cap''.}
     \end{figure}
-    Naletel sem pa na članek \cite{doi:10.1063/1.1143294}, kjer so potrebovali podobno rešitev, ki so jo reševali z transformatorji kateri so imeli 1:1 razmerje in primerno prebojno trdnost. V simulacijah se je rešitev obnesla. V resničnem svetu bi me pa skrbelo, če bi kakšen krmilnik ali tranzistor le malo zakasnil, saj bi takrat pristala celotna napetost na njemu, kar bi seveda pomenilo preobremenitev le tega.
+    V članku avtorjev Continetti, R. E., Cyr, D. R., and Neumark, D. M\cite{doi:10.1063/1.1143294} so opisali podoben problem, ki so ga reˇsevali s transformatorji v razmerju 1:1 in primerno prebojno trdnostjo. V simulacijah se je rešitev obnesla. V resničnem svetu pa se to verjetno ne bi obneslo, saj bi le majhna zakasnitev posameznega krmilnika ali tranzistorja povzročila, da bi na njem pristala celotna napetost in posledično seveda preobremenitev.
     
 	\subsubsection{Mehanska rešitev} \label{Mehanska rešitev}    
     
     
-    V iskanju nadaljnjih rešitev to pomeni mehanično rešitev in samo eno stikalo ne zaporedne ali vzporedne vezave stikal. Lotili smo se hitrih prototipov štirih stikal:
+    V iskanju nadaljnjih rešitev je bil logičen zaključek mehanska rešitev z enim stikalom, brez zaporedne ali vzporedne vezave stikal. V nadaljevanju so predstavljeni prototipi štirih stikal:
     \begin{enumerate}
    
-        \item  Solenoid, kateri drži razklenjena kontakta, skupaj ju vleče vzmet. Ob sprožitvi se obrne polariteta napajanja tuljave solenoida, kateri poleg vzmeti tišči kontakta skupaj.
+        \item  Solenoid drži razklenjena kontakta, ki ju skupaj ju vleče vzmet. Ob sprožitvi se obrne polariteta napajanja tuljave solenoida, ki poleg vzmeti vleče kontakta skupaj.
     \begin{figure}[H]
         \centering
         \includegraphics[width=1\columnwidth]{Sheme/StikaloSolenoidVerzija1.pdf}
-        \caption{\label{/StikaloSolenoidVerzija1} Shema stikala s solenoidom verzija 1.}
+        \caption{\label{/StikaloSolenoidVerzija1} Shema stikala s solenoidom V1.}
     \end{figure}
     
-    \item  Solenoid kateri porine kontakt in ga jezička ujameta.
+    \item  Solenoid, ki porine kontakt, jezička pa ga ujameta.
     \begin{figure}[H]
         \centering
         \includegraphics[width=1\columnwidth]{Sheme/StikaloSolenoidVerzija2.pdf}
-        \caption{\label{/StikaloSolenoidVerzija2} Shema stikala s solenoidom verzija 2.}
+        \caption{\label{/StikaloSolenoidVerzija2} Shema stikala s solenoidom V2.}
     \end{figure}
     
     \item  Servo motor se zasuče in z drsnim stikalom sklene kontakt.
     \begin{figure}[H]
         \centering
         \includegraphics[width=1\columnwidth]{Sheme/StikaloServoVerzija1.pdf}
-        \caption{\label{StikaloServoVerzija1} Shema stikala s servo motorjem verzija 1.}
+        \caption{\label{StikaloServoVerzija1} Shema stikala s servo motorjem V1.}
     \end{figure}
     
     \item  Servo motor se zasuče in pritisne na kontakt kateri je na vzmeti.
     \begin{figure}[H]
         \centering
         \includegraphics[width=1\columnwidth]{Sheme/StikaloServoVerzija2.pdf}
-        \caption{\label{StikaloServoVerzija2} Shema stikala s servo motorjem verzija 2.}
+        \caption{\label{StikaloServoVerzija2} Shema stikala s servo motorjem V2.}
     \end{figure}
 \end{enumerate}
 
 
-    ~\\Za solenoid smo na začetku uporabili manjši model, kateri je bil namenjen konstantnemu delovanju pri \SI{12}{\volt}, za hitrejše delovanje in večjo silo se ga lahko prenapaja z  \SI{40}{\volt} za čas  \SI{1}{\second} z delovnim ciklom 5\%. Izkazal se je za neuporabnega, saj čim se na njega namesti kontakt, nima več zadostne moči za premikanje, posebno če bi se moral še upirati sili vzmeti. Za hitri preizkus mojih tez sem naredil solenoid na tuljavniku od transformatorja.
+    ~\\Za solenoid je bil najprej uporabljen manjši model, ki je bil namenjen konstantnemu delovanju pri \SI{12}{\volt}, za hitrejˇse delovanje in veˇcjo silo pa se ga lahko prenapaja s \SI{40}{\volt} za čas  \SI{1}{\second} z delovnim ciklom 5\%. Ta model se je izkazal za neprimernega, saj v trenutku, ko se je na njega namestil kontakt, ni imel več zadostne moči za premikanje, še posebno, če bi se moral upirati sili vzmeti. 
+~\\ 
+~\\Za hitri preizkus postavljene teze sem sestavil solenoid na tuljavniku transformatorja.
     %probat še z močnejšim solenoidom
     
-    ~\\S stikalom s servo motorjem smo imeli dokaj dobre uspehe, vendar smo še vedno bili daleč od končne rešitve. Hitre meritve prototipa stikala z servo motorjem verzija 1, so pokazale dvižni čas  \SI{10}{\nano\second} kjer se vseeno pojavljajo manjše prekinitve po sklenitvi kontaktov. Skrbi me pa tudi obraba in oksidacija kontaktov. Rešitev bi bila zaprtje celotnega stikala v vakuumsko komoro ali še bolje v plin $SF_{6}$ kateri ima zelo visoko prebojno trdnost.
+    ~\\Za hitri preizkus postavljene teze sem sestavil solenoid na tuljavniku
+transformatorja. 
+~\\Meritve prototipa stikala V1 s servo motorjem so pokazale dvižni čas \SI{10}{\nano\second}, vseeno pa so se pojavljale manjše prekinitve po sklenitvi kontaktov. Poleg tega bi lahko problem predstavljala tudi obraba in oksidacija kontaktov. Rešitev bi bila zaprtje celotnega stikala v vakuumsko komoro ali še bolje v plin $SF_{6}$ kateri ima zelo visoko prebojno trdnost.
     
     \begin{figure}[H]
         \centering
         \includegraphics[width=1\columnwidth]{Slike/ServoStikalo1/ServoStikalo1.png}
-        \caption{\label{ServoStikalo1} Potek napetosti po sklenitvi kontaktov pri servo stikalu verzija 1.}
+        \caption{\label{ServoStikalo1} Potek napetosti po sklenitvi kontaktov pri servo stikalu V1.}
     \end{figure}
     
     \begin{figure}[H]
         \centering
         \includegraphics[width=1\columnwidth]{Slike/ServoStikalo1/ServoStikalo1povecano.png}
-        \caption{\label{ServoStikalo1povecano} Potek napetosti po sklenitvi kontaktov pri servo stikalu verzija 1 povečano.}
+        \caption{\label{ServoStikalo1povecano} Potek napetosti po sklenitvi kontaktov pri servo stikalu V1 povečano.}
     \end{figure}
     
-    ~\\Stikalo s servo motorjem verzija 2 pa je problem počasnega dvižnega časa. Verjetno je kriva vsa parazitna kapacitivnost. Potrebno bi bilo narediti revizijo in skrajšati vse segmente žice in narediti kontakte bolj kompaktne. 
+    ~\\Pri stikalu V2 s servo motorjem pa se je pojavil izziv počasnega dvižnega časa. Predvidoma jo povzroča vsa parazitna kapacitivnost. Potrebno bi bilo narediti revizijo in skrajšati vse segmente žice ter izdelati bolj kompaktne kontakte.
     
 
 
@@ -573,10 +584,13 @@ Vendar mi je dalo misliti, če se uporabi najbolj idealne komercialne tranzistor
 
 \chapter{Sklep} \label{Sklep}
 
-	Kljub temu, da se je že ob zasnovi projekta vedelo, da bo celoten projekt izjemno težavno izpeljati v predlaganem časovnem okvirju in proračunu, nismo pričakovali takšnih zapletov. Večji del problemov je predstavljala zahtevana visoka napetost, saj se komercialno dobavljive komponente dobijo do okoli \SI{3}{\kilo\volt}, za višje napetosti pa postanejo komponente že težje dobavljive in posledično dražje. Ogromno preglavic je povzročal tudi rele brez skakanja, saj se načeloma uporabljajo za nizke napetosti. Poleg tega vsebujejo nevarne substance, kar jih naredi še bolj redke. Kljub temu sem z ugotovitvami prišel do kar nekaj uporabnih rešitev, katere bom še bolj raziskal pri izdelavi diplomske naloge. Do delujočega ESD simulatorja bi lahko prišel z uporabo komercialnega visokonapetostnega nastavljivega napajalnika proizvajalca Applied Kilovolts in visokonapetostnim relejem namenjenim praznjenju kapacitivnih zalogovnikov proizvajalca Gigavac, vendar bi taka rešitev podražila projekt za vsaj 5000\texteuro. Druga možnost je lastni razvoj visokonapetostnega nastavljivega napajalnika in visokonapetostnega releja, katera bi približno enako podražila projekt toda bi bilo potrebnih 400 delovnih ur več. V podjetju pa tudi nimamo izkušenj s tako visokimi napetostmi, saj se ukvarjamo z mikroelektroniko.
-	
-	
-	
+Sama zasnova projekta je bila izredno smelo zastavljena, kar se tiče časovnih okvirjev in proračuna, ob sami izvedbi pa nismo pričakovali takih zapletov.
+~\\Veˇcji del izziva je predstavljala zahtevana visoka napetost, saj so komercialno
+dosegljive komponente dobavljive do \SI{3}{\kilo\volt}, za višje napetosti pa postanejo komponente težje dobavljive in posledično dražje. Veliko preglavic je povzročal tudi rele brez skakanja, saj se načeloma uporablja za nizke napetosti. Poleg tega vsebuje nevarne substance, kar ga naredi še težje dostopnega. Kljub temu sem z eksperimenti prišel do nekaj uporabnih rešitev, ki jih bom bolje raziskal pri izdelavi diplomske naloge. Kot ESD simulator bi lahko uporabil komercialni visokonapetostni nastavljivi napajalnik proizvajalca Applied Kilovolts in visokonapetostni rele, namenjen praznjenju kapacitivnih zalogovnikov
+proizvajalca Gigavac, vendar bi taka rešitev podražila projekt za približno 5000\texteuro . Druga možnost je bila lastni razvoj visokonapetostnega nastavljivega
+napajalnika in visokonapetostnega releja, ki bi podobno podražila projekt, vendar bi zahtevala dodatno 400 ur dela. Dodatno pa tudi podjetje nima izkušenj s tako visokimi napetostmi, saj se ukvarja z mikroelektroniko.
+
+
 \bibliographystyle{acm}	
 \bibliography{literatura} 
 

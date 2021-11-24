@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.9.21)  23 NOV 2021 00:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.9.21)  24 NOV 2021 19:58
 entering extended mode
 **./ESDSimulator.tex
 (ESDSimulator.tex
@@ -1732,9 +1732,9 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.374 
+l.375 
        <./Slike/Simulacije/LM3757spice.png>]
-Underfull \vbox (badness 5105) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (2.61108pt too wide) has occurred while \output is active
@@ -1748,7 +1748,7 @@ on: found PDF version <1.7>, but at most version <1.5> allowed
 <Sheme/KrmilnikzuCElShema.pdf, id=326, 596.2275pt x 300.322pt>
 File: Sheme/KrmilnikzuCElShema.pdf Graphic file (type pdf)
 <use Sheme/KrmilnikzuCElShema.pdf>
-Package pdftex.def Info: Sheme/KrmilnikzuCElShema.pdf  used on input line 383.
+Package pdftex.def Info: Sheme/KrmilnikzuCElShema.pdf  used on input line 384.
 (pdftex.def)             Requested size: 412.56496pt x 207.80898pt.
 
 
@@ -1757,7 +1757,7 @@ pdfTeX warning: pdflatex.exe (file ./Sheme/KrmilnikzuCShema.pdf): PDF inclusion
 <Sheme/KrmilnikzuCShema.pdf, id=327, 225.84375pt x 903.375pt>
 File: Sheme/KrmilnikzuCShema.pdf Graphic file (type pdf)
 <use Sheme/KrmilnikzuCShema.pdf>
-Package pdftex.def Info: Sheme/KrmilnikzuCShema.pdf  used on input line 389.
+Package pdftex.def Info: Sheme/KrmilnikzuCShema.pdf  used on input line 390.
 (pdftex.def)             Requested size: 144.40024pt x 577.63423pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1771,7 +1771,7 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.392 	
+l.393 	
         <./Sheme/KrmilnikzuCElShema.pdf>]
 Overfull \vbox (10.69989pt too high) has occurred while \output is active []
 
@@ -1784,12 +1784,12 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.392 	
+l.393 	
         <./Sheme/KrmilnikzuCShema.pdf>]
 <Slike/GigavacG61C.png, id=380, 241.65282pt x 456.20438pt>
 File: Slike/GigavacG61C.png Graphic file (type png)
 <use Slike/GigavacG61C.png>
-Package pdftex.def Info: Slike/GigavacG61C.png  used on input line 403.
+Package pdftex.def Info: Slike/GigavacG61C.png  used on input line 406.
 (pdftex.def)             Requested size: 206.28247pt x 389.4462pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1803,7 +1803,7 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 <Slike/MederReleH.png, id=387, 602.25pt x 437.635pt>
 File: Slike/MederReleH.png Graphic file (type png)
 <use Slike/MederReleH.png>
-Package pdftex.def Info: Slike/MederReleH.png  used on input line 411.
+Package pdftex.def Info: Slike/MederReleH.png  used on input line 416.
 (pdftex.def)             Requested size: 412.56496pt x 299.81155pt.
 
 
@@ -1821,13 +1821,13 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.452 
+l.454 
        <./Slike/GigavacG61C.png>]
 <Slike/MedlerElectronicsRele.png, id=393, 602.25pt x 475.7775pt>
 File: Slike/MedlerElectronicsRele.png Graphic file (type png)
 <use Slike/MedlerElectronicsRele.png>
 Package pdftex.def Info: Slike/MedlerElectronicsRele.png  used on input line 45
-5.
+7.
 (pdftex.def)             Requested size: 412.56496pt x 325.94191pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1841,12 +1841,12 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.458 
+l.460 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 2.8}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.458 
+l.460 
        <./Slike/MederReleH.png>]
 Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 [] 
@@ -1856,7 +1856,7 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.461 
+l.463 
        <./Slike/MedlerElectronicsRele.png>]
 Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 [] 
@@ -1872,7 +1872,7 @@ clusion: found PDF version <1.7>, but at most version <1.5> allowed
 File: Sheme/StikaloSolenoidVerzija1.pdf Graphic file (type pdf)
 <use Sheme/StikaloSolenoidVerzija1.pdf>
 Package pdftex.def Info: Sheme/StikaloSolenoidVerzija1.pdf  used on input line 
-523.
+530.
 (pdftex.def)             Requested size: 412.56496pt x 119.02493pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1886,7 +1886,7 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 0}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.526 
+l.533 
       ]
 
 pdfTeX warning: pdflatex.exe (file ./Sheme/StikaloSolenoidVerzija2.pdf): PDF in
@@ -1895,7 +1895,7 @@ clusion: found PDF version <1.7>, but at most version <1.5> allowed
 File: Sheme/StikaloSolenoidVerzija2.pdf Graphic file (type pdf)
 <use Sheme/StikaloSolenoidVerzija2.pdf>
 Package pdftex.def Info: Sheme/StikaloSolenoidVerzija2.pdf  used on input line 
-530.
+537.
 (pdftex.def)             Requested size: 412.56496pt x 120.52303pt.
 
 
@@ -1904,7 +1904,7 @@ sion: found PDF version <1.7>, but at most version <1.5> allowed
 <Sheme/StikaloServoVerzija1.pdf, id=421, 496.85625pt x 304.13625pt>
 File: Sheme/StikaloServoVerzija1.pdf Graphic file (type pdf)
 <use Sheme/StikaloServoVerzija1.pdf>
-Package pdftex.def Info: Sheme/StikaloServoVerzija1.pdf  used on input line 537
+Package pdftex.def Info: Sheme/StikaloServoVerzija1.pdf  used on input line 544
 .
 (pdftex.def)             Requested size: 412.56496pt x 252.54439pt.
 
@@ -1919,12 +1919,12 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.540 
+l.547 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 2.12}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.540 
+l.547 
        <./Sheme/StikaloSolenoidVerzija1.pdf> <./Sheme/StikaloSolenoidVerzija2.p
 df
 
@@ -1937,7 +1937,7 @@ sion: found PDF version <1.7>, but at most version <1.5> allowed
 <Sheme/StikaloServoVerzija2.pdf, id=443, 572.1375pt x 316.18124pt>
 File: Sheme/StikaloServoVerzija2.pdf Graphic file (type pdf)
 <use Sheme/StikaloServoVerzija2.pdf>
-Package pdftex.def Info: Sheme/StikaloServoVerzija2.pdf  used on input line 544
+Package pdftex.def Info: Sheme/StikaloServoVerzija2.pdf  used on input line 551
 .
 (pdftex.def)             Requested size: 412.56496pt x 227.99768pt.
 
@@ -1952,17 +1952,18 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.547 \end{enumerate}
+l.554 \end{enumerate}
                       <./Sheme/StikaloServoVerzija1.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 557--561
+
+ []
+
 <Slike/ServoStikalo1/ServoStikalo1.png, id=457, 803.0pt x 481.8pt>
 File: Slike/ServoStikalo1/ServoStikalo1.png Graphic file (type png)
 <use Slike/ServoStikalo1/ServoStikalo1.png>
 Package pdftex.def Info: Slike/ServoStikalo1/ServoStikalo1.png  used on input l
-ine 557.
+ine 568.
 (pdftex.def)             Requested size: 412.56496pt x 247.5453pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 
 Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 [] 
@@ -1972,17 +1973,14 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.560 
+l.571 
        <./Sheme/StikaloServoVerzija2.pdf>]
 <Slike/ServoStikalo1/ServoStikalo1povecano.png, id=470, 803.0pt x 481.8pt>
 File: Slike/ServoStikalo1/ServoStikalo1povecano.png Graphic file (type png)
 <use Slike/ServoStikalo1/ServoStikalo1povecano.png>
 Package pdftex.def Info: Slike/ServoStikalo1/ServoStikalo1povecano.png  used on
- input line 563.
+ input line 574.
 (pdftex.def)             Requested size: 412.56496pt x 247.5453pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 
 Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 [] 
@@ -1992,19 +1990,19 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.566 
-       <./Slike/ServoStikalo1/ServoStikalo1.png (PNG copy)>]
+l.579 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+2.16}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.579 
+       <./Slike/ServoStikalo1/ServoStikalo1.png (PNG copy)> <./Slike/ServoStika
+lo1/ServoStikalo1povecano.png (PNG copy)>]
 Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 [] 
  []
 
-[26pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
-6}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-l.574 \chapter
-              {Sklep} \label{Sklep} <./Slike/ServoStikalo1/ServoStikalo1povecan
-o.png (PNG copy)>]
+[26]
   3.
 (ESDSimulator.bbl [27
 
@@ -2028,10 +2026,10 @@ Package rerunfilecheck Info: File `ESDSimulator.out' has not changed.
 (rerunfilecheck)             Checksum: 6CB7E44FD59F7F7DD576A8F3BD810CA3;3481.
  ) 
 Here is how much of TeX's memory you used:
- 45265 strings out of 479334
- 1008100 string characters out of 2857084
- 1446842 words of memory out of 3000000
- 61940 multiletter control sequences out of 15000+200000
+ 45266 strings out of 479334
+ 1008118 string characters out of 2857084
+ 1446315 words of memory out of 3000000
+ 61941 multiletter control sequences out of 15000+200000
  417514 words of font info for 76 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,14n,102p,2031b,2366s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2048,9 +2046,9 @@ lak/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl12.pfb><C:
 /Users/Oblak/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy1
 0.pfb><C:/Users/Oblak/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
 /cm/cmti12.pfb>
-Output written on ESDSimulator.pdf (46 pages, 902410 bytes).
+Output written on ESDSimulator.pdf (46 pages, 902299 bytes).
 PDF statistics:
- 575 PDF objects out of 1000 (max. 8388607)
+ 576 PDF objects out of 1000 (max. 8388607)
  113 named destinations out of 1000 (max. 500000)
  250 words of extra memory for PDF output out of 10000 (max. 10000000)
 

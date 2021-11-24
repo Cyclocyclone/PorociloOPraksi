@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.9.21)  24 NOV 2021 19:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.9.21)  24 NOV 2021 19:59
 entering extended mode
 **./ESDSimulator.tex
 (ESDSimulator.tex
@@ -1661,7 +1661,7 @@ l.275
 
 pdfTeX warning: pdflatex.exe (file ./Sheme/Osnovna blok shema poenostavljena.pd
 f): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<Sheme/Osnovna blok shema poenostavljena.pdf, id=260, 436.63126pt x 237.88875pt
+<Sheme/Osnovna blok shema poenostavljena.pdf, id=259, 436.63126pt x 237.88875pt
 >
 File: Sheme/Osnovna blok shema poenostavljena.pdf Graphic file (type pdf)
 <use Sheme/Osnovna blok shema poenostavljena.pdf>
@@ -1714,7 +1714,7 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
  []
 
 [11]
-<Slike/Simulacije/LM3757spice.png, id=312, 1030.60031pt x 451.6875pt>
+<Slike/Simulacije/LM3757spice.png, id=311, 1030.60031pt x 451.6875pt>
 File: Slike/Simulacije/LM3757spice.png Graphic file (type png)
 <use Slike/Simulacije/LM3757spice.png>
 Package pdftex.def Info: Slike/Simulacije/LM3757spice.png  used on input line 3
@@ -1745,7 +1745,7 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
 
 pdfTeX warning: pdflatex.exe (file ./Sheme/KrmilnikzuCElShema.pdf): PDF inclusi
 on: found PDF version <1.7>, but at most version <1.5> allowed
-<Sheme/KrmilnikzuCElShema.pdf, id=326, 596.2275pt x 300.322pt>
+<Sheme/KrmilnikzuCElShema.pdf, id=325, 596.2275pt x 300.322pt>
 File: Sheme/KrmilnikzuCElShema.pdf Graphic file (type pdf)
 <use Sheme/KrmilnikzuCElShema.pdf>
 Package pdftex.def Info: Sheme/KrmilnikzuCElShema.pdf  used on input line 384.
@@ -1754,7 +1754,7 @@ Package pdftex.def Info: Sheme/KrmilnikzuCElShema.pdf  used on input line 384.
 
 pdfTeX warning: pdflatex.exe (file ./Sheme/KrmilnikzuCShema.pdf): PDF inclusion
 : found PDF version <1.7>, but at most version <1.5> allowed
-<Sheme/KrmilnikzuCShema.pdf, id=327, 225.84375pt x 903.375pt>
+<Sheme/KrmilnikzuCShema.pdf, id=326, 225.84375pt x 903.375pt>
 File: Sheme/KrmilnikzuCShema.pdf Graphic file (type pdf)
 <use Sheme/KrmilnikzuCShema.pdf>
 Package pdftex.def Info: Sheme/KrmilnikzuCShema.pdf  used on input line 390.
@@ -1786,7 +1786,7 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
                                                   
 l.393 	
         <./Sheme/KrmilnikzuCShema.pdf>]
-<Slike/GigavacG61C.png, id=380, 241.65282pt x 456.20438pt>
+<Slike/GigavacG61C.png, id=379, 241.65282pt x 456.20438pt>
 File: Slike/GigavacG61C.png Graphic file (type png)
 <use Slike/GigavacG61C.png>
 Package pdftex.def Info: Slike/GigavacG61C.png  used on input line 406.
@@ -1800,7 +1800,7 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
  []
 
 [16]
-<Slike/MederReleH.png, id=387, 602.25pt x 437.635pt>
+<Slike/MederReleH.png, id=386, 602.25pt x 437.635pt>
 File: Slike/MederReleH.png Graphic file (type png)
 <use Slike/MederReleH.png>
 Package pdftex.def Info: Slike/MederReleH.png  used on input line 416.
@@ -1823,7 +1823,7 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
                                                   
 l.454 
        <./Slike/GigavacG61C.png>]
-<Slike/MedlerElectronicsRele.png, id=393, 602.25pt x 475.7775pt>
+<Slike/MedlerElectronicsRele.png, id=392, 602.25pt x 475.7775pt>
 File: Slike/MedlerElectronicsRele.png Graphic file (type png)
 <use Slike/MedlerElectronicsRele.png>
 Package pdftex.def Info: Slike/MedlerElectronicsRele.png  used on input line 45
@@ -1868,7 +1868,7 @@ Missing character: There is no ; in font nullfont!
 
 pdfTeX warning: pdflatex.exe (file ./Sheme/StikaloSolenoidVerzija1.pdf): PDF in
 clusion: found PDF version <1.7>, but at most version <1.5> allowed
-<Sheme/StikaloSolenoidVerzija1.pdf, id=412, 542.77782pt x 156.585pt>
+<Sheme/StikaloSolenoidVerzija1.pdf, id=411, 542.77782pt x 156.585pt>
 File: Sheme/StikaloSolenoidVerzija1.pdf Graphic file (type pdf)
 <use Sheme/StikaloSolenoidVerzija1.pdf>
 Package pdftex.def Info: Sheme/StikaloSolenoidVerzija1.pdf  used on input line 
@@ -1891,7 +1891,7 @@ l.533
 
 pdfTeX warning: pdflatex.exe (file ./Sheme/StikaloSolenoidVerzija2.pdf): PDF in
 clusion: found PDF version <1.7>, but at most version <1.5> allowed
-<Sheme/StikaloSolenoidVerzija2.pdf, id=420, 536.0025pt x 156.585pt>
+<Sheme/StikaloSolenoidVerzija2.pdf, id=419, 536.0025pt x 156.585pt>
 File: Sheme/StikaloSolenoidVerzija2.pdf Graphic file (type pdf)
 <use Sheme/StikaloSolenoidVerzija2.pdf>
 Package pdftex.def Info: Sheme/StikaloSolenoidVerzija2.pdf  used on input line 
@@ -1901,7 +1901,7 @@ Package pdftex.def Info: Sheme/StikaloSolenoidVerzija2.pdf  used on input line
 
 pdfTeX warning: pdflatex.exe (file ./Sheme/StikaloServoVerzija1.pdf): PDF inclu
 sion: found PDF version <1.7>, but at most version <1.5> allowed
-<Sheme/StikaloServoVerzija1.pdf, id=421, 496.85625pt x 304.13625pt>
+<Sheme/StikaloServoVerzija1.pdf, id=420, 496.85625pt x 304.13625pt>
 File: Sheme/StikaloServoVerzija1.pdf Graphic file (type pdf)
 <use Sheme/StikaloServoVerzija1.pdf>
 Package pdftex.def Info: Sheme/StikaloServoVerzija1.pdf  used on input line 544
@@ -1934,7 +1934,7 @@ clusion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex.exe (file ./Sheme/StikaloServoVerzija2.pdf): PDF inclu
 sion: found PDF version <1.7>, but at most version <1.5> allowed
-<Sheme/StikaloServoVerzija2.pdf, id=443, 572.1375pt x 316.18124pt>
+<Sheme/StikaloServoVerzija2.pdf, id=442, 572.1375pt x 316.18124pt>
 File: Sheme/StikaloServoVerzija2.pdf Graphic file (type pdf)
 <use Sheme/StikaloServoVerzija2.pdf>
 Package pdftex.def Info: Sheme/StikaloServoVerzija2.pdf  used on input line 551
@@ -1958,7 +1958,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 557--561
 
  []
 
-<Slike/ServoStikalo1/ServoStikalo1.png, id=457, 803.0pt x 481.8pt>
+<Slike/ServoStikalo1/ServoStikalo1.png, id=456, 803.0pt x 481.8pt>
 File: Slike/ServoStikalo1/ServoStikalo1.png Graphic file (type png)
 <use Slike/ServoStikalo1/ServoStikalo1.png>
 Package pdftex.def Info: Slike/ServoStikalo1/ServoStikalo1.png  used on input l
@@ -1975,7 +1975,7 @@ Overfull \hbox (2.61108pt too wide) has occurred while \output is active
                                                   
 l.571 
        <./Sheme/StikaloServoVerzija2.pdf>]
-<Slike/ServoStikalo1/ServoStikalo1povecano.png, id=470, 803.0pt x 481.8pt>
+<Slike/ServoStikalo1/ServoStikalo1povecano.png, id=469, 803.0pt x 481.8pt>
 File: Slike/ServoStikalo1/ServoStikalo1povecano.png Graphic file (type png)
 <use Slike/ServoStikalo1/ServoStikalo1povecano.png>
 Package pdftex.def Info: Slike/ServoStikalo1/ServoStikalo1povecano.png  used on
@@ -2026,10 +2026,10 @@ Package rerunfilecheck Info: File `ESDSimulator.out' has not changed.
 (rerunfilecheck)             Checksum: 6CB7E44FD59F7F7DD576A8F3BD810CA3;3481.
  ) 
 Here is how much of TeX's memory you used:
- 45266 strings out of 479334
- 1008118 string characters out of 2857084
- 1446315 words of memory out of 3000000
- 61941 multiletter control sequences out of 15000+200000
+ 45265 strings out of 479334
+ 1008100 string characters out of 2857084
+ 1446241 words of memory out of 3000000
+ 61940 multiletter control sequences out of 15000+200000
  417514 words of font info for 76 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,14n,102p,2031b,2366s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2046,9 +2046,9 @@ lak/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl12.pfb><C:
 /Users/Oblak/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy1
 0.pfb><C:/Users/Oblak/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
 /cm/cmti12.pfb>
-Output written on ESDSimulator.pdf (46 pages, 902299 bytes).
+Output written on ESDSimulator.pdf (46 pages, 901666 bytes).
 PDF statistics:
- 576 PDF objects out of 1000 (max. 8388607)
+ 574 PDF objects out of 1000 (max. 8388607)
  113 named destinations out of 1000 (max. 500000)
  250 words of extra memory for PDF output out of 10000 (max. 10000000)
 

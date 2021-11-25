@@ -10,7 +10,7 @@
 \contentsline {subsection}{\numberline {2.2.2}Nastavljivi visokonapetostni napajalnik}{8}{subsection.2.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.2.1}Regulacija napetosti}{10}{subsubsection.2.2.2.1}%
 \contentsline {subsubsection}{\numberline {2.2.2.2}LM5155}{10}{subsubsection.2.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.2.3}UCC28740-Q1}{10}{subsubsection.2.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.2.3}UCC28740-Q1}{11}{subsubsection.2.2.2.3}%
 \contentsline {subsubsection}{\numberline {2.2.2.4}LT3748}{11}{subsubsection.2.2.2.4}%
 \contentsline {subsubsection}{\numberline {2.2.2.5}LT3757}{12}{subsubsection.2.2.2.5}%
 \contentsline {subsubsection}{\numberline {2.2.2.6}LT8304}{13}{subsubsection.2.2.2.6}%
